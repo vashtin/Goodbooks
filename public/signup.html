@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goodbooks</title>
+    <link rel="icon" href="fav_images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="fav_images/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="fav_images/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="fav_images/favicon-96x96.png" sizes="96x96" type="image/png">
+    <link rel="apple-touch-icon" href="fav_images/apple-touch-icon.png">
+    <link rel="icon" href="fav_images/android-chrome-192x192.png" sizes="192x192" type="image/png">
+    <link rel="icon" href="fav_images/android-chrome-512x512.png" sizes="512x512" type="image/png">
+    <link rel="manifest" href="fav_images/manifest.json">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+
+<style>
+
+    /* Log In Button */
+
+    .btn-login-custom {
+        background-color: #fde291; 
+        color: #6c473d; 
+        border: none;
+        transition: color 0.3s ease; 
+    }
+
+    .btn-login-custom:hover {
+        color: #FFFFFF;
+        background-color: #fde291; 
+    }
+
+    /* Sign Up Button */
+
+    .btn-signup-primary {
+        background-color: #C28D43; 
+        color: #FFFFFF; 
+        border: none;
+        transition: color 0.3s ease; 
+    }
+
+    .btn-signup-primary:hover {
+        color: #FDE291; 
+        background-color: #C28D43; 
+    }
+
+
+
+</style>
+
+<body class="bg-brown text-light d-flex flex-column min-vh-100">
+
+
+    <!-- Header -->
+    <div class="container text-center py-4">
+        <a href="index.html"><h1 class="display-1 fw-bold">Goodbooks</h1></a>
+    </div>
+
+
+    <div class="container mt-5 d-flex flex-column align-items-center">
+        <div class="col-lg-6 mb-5 text-center">
+            <h2 style="color: #fde291;">Join Now</h2>
+            <div class="p-3 bg-dark text-light rounded text-center shadow-lg">
+                <p class="mb-4"></p>
+    
+                <!-- Sign-up Form -->
+                <form id="signup-form" class="mb-4">
+                    <div class="mb-3">
+                        <label for="name" class="form-label" style="color: #fde291;">Username</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label" style="color: #fde291;">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label" style="color: #fde291;">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-signup-primary w-100">Sign Up</button>
+                </form>
+    
+                <!-- Log In Button -->
+                <p class="text-center">Already signed up?</p>
+                <a href="login.html" class="btn btn-login-custom w-100 mb-2">Log In</a>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <!-- Import Bootstrap CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+    <!-- Import Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+
+        /* Handle form submission for sign-up */
+
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            // Collect form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Sends a POST request to the server at '/api/signup' to create a new user account
+            fetch('api/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);  
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error with the sign-up.');
+            });
+        });
+    
+    </script>
+    
+</body>
+</html>

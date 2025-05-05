@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goodbooks</title>
+    <link rel="icon" href="fav_images/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+
+<body class="bg-brown text-light d-flex flex-column min-vh-100">
+
+    <div class="container text-center py-4">
+        <a href="index.html"><h1 class="display-1 fw-bold">Goodbooks</h1></a>
+    </div>
+
+    <div class="sidebar bg-brown py-3">
+        <div class="container d-flex justify-content-center align-items-center">
+            <a class="btn sidebar-button mx-2 text-center" href="index.html">Home</a>
+            <a class="btn sidebar-button mx-2 text-center" href="about.html">About</a>
+            <a class="btn sidebar-button mx-2 text-center" href="browse.html">Browse</a>
+            <div class="sidebar-search mx-2">
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="search" placeholder="Search for books..." aria-label="Search for books">
+                        <button class="btn sidebar-button" type="submit">Search</button>
+                    </div>
+                </form>
+                <ul id="dropdown-box" class="dropdown-box list-unstyled"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5 d-flex flex-column align-items-center" id="book-container"></div>
+
+        <!-- Import Bootstrap CSS -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    
+        <!-- Import Jquery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+        <!-- Import Dropbox.js -->
+        <script src="dropbox.js"></script>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('book-container');
+
+            // Render all books
+            const renderBooks = (genres) => {
+                container.innerHTML = Object.entries(genres)
+                    .map(([genre, books]) => `
+                        <div class="col-lg-6 mb-5 text-center">
+                            <h2 style="color: #fde291;">${capitalize(genre)}</h2>
+                            <div class="p-3 bg-dark text-light rounded text-center shadow-lg d-flex flex-wrap justify-content-center">
+                                ${books.map(book => renderBookImage(book, genre)).join('')}
+                            </div>
+                        </div>
+                    `).join('');
+            };
+
+            // Render a single book image
+            const renderBookImage = (book, genre) => {
+                const sanitizedTitle = sanitize(book.title);
+                return `
+                    <a href="book-details.html?id=${book.id}">
+                        <img src="bookimages/${genre.toLowerCase()}/${sanitizedTitle}.jpg" alt="${book.title}" 
+                            class="book-img mx-2 my-2">
+                    </a>
+                `;
+            };
+
+            // Fetch books from the server
+            const fetchBooks = async () => {
+                try {
+                    const response = await fetch('/books');
+                    const books = await response.json();
+
+                    const genres = books.reduce((acc, book) => {
+                        acc[book.genre] = acc[book.genre] || [];
+                        acc[book.genre].push(book);
+                        return acc;
+                    }, {});
+
+                    renderBooks(genres);
+                } catch (error) {
+                    console.error('Error fetching books:', error);
+                    container.innerHTML = '<p>Failed to load books. Please try again later.</p>';
+                }
+            };
+
+            // sanitize a string 
+            const sanitize = (text) => text.replace(/[^a-zA-Z0-9]/g, '').replace(/\s+/g, '');
+
+            // capitalize the first letter of a string
+            const capitalize = (text) => text.charAt(0).toUpperCase() + text.slice(1);
+
+            fetchBooks();
+        });
+
+
+
+
+    </script>
+
+</body>
+</html>

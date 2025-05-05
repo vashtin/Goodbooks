@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goodbooks</title>
+    <link rel="icon" href="fav_images/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+
+<style>
+
+    /* General CSS */
+
+    .purchased-books-box {
+        background-color: #212529;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .center-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    /* Login/Signup CSS */
+
+    .login-button {
+        background-color: #fde291;
+        color: #6c473d;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .login-button:hover {
+        background-color: #d8b06e;
+        color: #ffffff;
+    }
+
+    .signup-button {
+        background-color: #C28D43;
+        color: #FFFFFF;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .signup-button:hover {
+        background-color: #a06d38;
+    }
+
+    .logout-button {
+        background-color: #C28D43;
+        color: #FFFFFF;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .logout-button:hover {
+        background-color: #a06d38;
+    }
+
+    /* Marquee CSS */ 
+
+
+    .marquee {
+        overflow: hidden;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: 100%;
+    }
+
+    .marquee-content {
+        display: flex;
+        width: max-content;
+        animation: marquee 30s linear infinite;
+    }
+
+    .marquee-content::after {
+        content: '';
+        display: inline-block;
+        width: 100%; 
+    }
+
+    .marquee img {
+        display: inline-block;
+        margin-right: 20px;
+        height: 200px;
+        flex-shrink: 0;
+    }
+
+
+    @keyframes marquee {
+    0% {
+        transform: translateX(0); 
+    }
+    100% {
+        transform: translateX(-50%); 
+    }
+    }
+
+
+</style>
+
+<body class="bg-brown text-light d-flex flex-column min-vh-100 pb-5">
+
+    <!-- Header -->
+    <div class="container text-center py-4">
+        <a href="index.html"><h1 class="display-1 fw-bold">Goodbooks</h1></a>
+    </div>
+
+    <!-- Sidebar and Search -->
+    <div class="sidebar bg-brown py-3">
+        <div class="container d-flex justify-content-center align-items-center">
+            <a class="btn sidebar-button mx-2 text-center" href="index.html">Home</a>
+            <a class="btn sidebar-button mx-2 text-center" href="about.html">About</a>
+            <a class="btn sidebar-button mx-2 text-center" href="browse.html">Browse</a>
+            <div class="sidebar-search mx-2">
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="search" placeholder="Search for books..." aria-label="Search for books">
+                        <button class="btn sidebar-button" type="submit">Search</button>
+                    </div>
+                </form>
+                <ul id="dropdown-box" class="dropdown-box list-unstyled"></ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Books -->
+    <div id="featured-books" class="container mt-5 d-flex flex-column align-items-center">
+        <div class="col-lg-6 mb-5 text-center">
+            <h2 class="text-center" style="color: #fde291;">Featured Books</h2>
+            <div class="marquee bg-dark p-3 rounded">
+                <div class="marquee-content d-flex">
+                    <a href="book-details.html?id=41"><img src="homebooks/1984.jpg" alt="Book 1" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=25"><img src="homebooks/AThousandSplendidSuns.jpg" alt="Book 2" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=18"><img src="homebooks/Cosmos.jpg" alt="Book 3" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=2"><img src="homebooks/HarryPotter.jpg" alt="Book 4" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=37"><img src="homebooks/Me.jpg" alt="Book 5" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=13"><img src="homebooks/NausicaäOfTheValleyOfTheWind.jpg" alt="Book 6" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=48"><img src="homebooks/Neuromancer.jpg" alt="Book 7" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=14"><img src="homebooks/OnePiece.jpg" alt="Book 8" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=40"><img src="homebooks/Pride.jpg" alt="Book 9" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=23"><img src="homebooks/TheDemonHauntedWorld.jpg" alt="Book 10" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=32"><img src="homebooks/Wonder.jpg" alt="Book 11" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=41"><img src="homebooks/1984.jpg" alt="Book 1" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=25"><img src="homebooks/AThousandSplendidSuns.jpg" alt="Book 2" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=18"><img src="homebooks/Cosmos.jpg" alt="Book 3" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=2"><img src="homebooks/HarryPotter.jpg" alt="Book 4" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=37"><img src="homebooks/Me.jpg" alt="Book 5" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=13"><img src="homebooks/NausicaäOfTheValleyOfTheWind.jpg" alt="Book 6" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=48"><img src="homebooks/Neuromancer.jpg" alt="Book 7" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=14"><img src="homebooks/OnePiece.jpg" alt="Book 8" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=40"><img src="homebooks/Pride.jpg" alt="Book 9" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=23"><img src="homebooks/TheDemonHauntedWorld.jpg" alt="Book 10" class="book-img mx-2"></a>
+                    <a href="book-details.html?id=32"><img src="homebooks/Wonder.jpg" alt="Book 11" class="book-img mx-2"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+        <!-- Purchased Books -->
+        <div class="container d-flex justify-content-center position-relative" style="padding-top: 100px; padding-bottom: 370px;"> <!-- Adjust padding-top as needed -->
+            <div class="text-center position-absolute" style="top: 50px; max-width: 600px; width: 100%; padding-bottom: 100px;"> <!-- Adjust `top` value to move up or down -->
+                <h2 id="purchased-books-heading" class="text-center" style="color: #fde291;">Purchased Books</h2>
+                <div id="purchased-books-box" class="purchased-books-box mb-5 text-center">
+                    <div id="purchased-books" class="d-flex flex-wrap justify-content-center">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- Join Goodbooks -->
+        <div class="col-lg-6 mb-5 text-center" id="join-goodbooks-section" style="position: relative; left: 357px; top: -450px;">
+            <h2 style="color: #fde291;">Join Goodbooks</h2>
+            <div class="p-3 bg-dark text-light rounded text-center">
+                <p class="mb-4">Welcome to Goodbooks! Here we have a book for everyone and offer the best prices on the online book market!</p>
+                <a href="login.html" class="btn login-button btn-lg mb-3 d-flex justify-content-center align-items-center">
+                    <i class="bi bi-person-circle me-2"></i> Log In
+                </a>
+                <a href="signup.html" class="btn signup-button btn-lg d-flex justify-content-center align-items-center">
+                    <i class="bi bi-person-plus-fill me-2"></i> Join Now
+                </a>
+            </div>
+        </div>
+
+    <!-- Logged In -->
+    <div class="container mt-5 d-flex flex-column align-items-center" id="login-section" style="position: relative; top: -140px;"></div>
+
+    
+
+    <!-- Import Bootstrap CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+    <!-- Import Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Import Dropbox.js -->
+    <script src="dropbox.js"></script>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Retrieve User Data
+            const userId = sessionStorage.getItem('userId');
+            const username = sessionStorage.getItem('username');
+
+            // Retrieves references to elements in the DOM
+            const featuredBooks = document.getElementById('featured-books');
+            const purchasedBooksBox = document.getElementById('purchased-books-box');
+            const purchasedBooksHeading = document.getElementById('purchased-books-heading');
+            const purchasedBooks = document.getElementById('purchased-books');
+            const joinSection = document.getElementById('join-goodbooks-section');
+            const loginSection = document.getElementById('login-section');
+
+            // Toggle visibility based on login status
+            const toggleVisibility = (loggedIn) => {
+                if (loggedIn) {
+                    featuredBooks?.classList.add('hidden');
+                    purchasedBooksBox?.classList.remove('hidden');
+                    purchasedBooksHeading?.classList.remove('hidden');
+                    joinSection.style.display = 'none';
+                    showLoggedInMessage(username);
+                    loadPurchasedBooks(userId);
+                } else {
+                    featuredBooks?.classList.remove('hidden');
+                    purchasedBooksBox?.classList.add('hidden');
+                    purchasedBooksHeading?.classList.add('hidden');
+                    joinSection.style.display = 'block';
+                    loginSection.innerHTML = '';
+                }
+            };
+
+            // Show logged-in message
+            const showLoggedInMessage = (username) => {
+                loginSection.innerHTML = `
+                    <div class="bg-dark rounded p-4 col-lg-6 col-md-8 text-center shadow-lg d-flex flex-column align-items-center">
+                        <h2 style="color: #fde291;" class="fw-bold mb-2">Welcome, ${username}!</h2>
+                        <p style="color: #fde291;" class="mb-3">You are logged in.</p>
+                        <button id="logout-button" class="btn logout-button px-4">Log Out</button>
+                    </div>
+                `;
+                document.getElementById('logout-button').addEventListener('click', logout);
+            };
+
+            const loadPurchasedBooks = (userId) => {
+                
+                // Fetch the user's purchases from the server
+                fetch(`/api/${userId}/purchases`)
+                    .then(response => {
+                        if (!response.ok) throw new Error('Failed to fetch purchases');
+                        return response.json();
+                    })
+                    .then(purchases => {
+                        purchasedBooks.innerHTML = purchases.length
+                            ? purchases.map(createBookEntry).join('')
+                            : '<p>No purchases found.</p>';
+                        adjustContainerPadding(purchases.length);
+                    })
+                    .catch(() => {
+                        purchasedBooks.innerHTML = '<p>Failed to load purchases. Please try again later.</p>';
+                    });
+            };
+
+            // Create book entry HTML
+            const createBookEntry = (purchase) => `
+                <div class="p-2 text-center">
+                    <img src="${purchase.bookImageUrl || 'default-image.jpg'}" alt="${purchase.bookTitle || 'Unknown Title'}" 
+                        style="width: 100px; height: 150px; object-fit: cover; border-radius: 5px;">
+                    <p style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin: 0 auto;">
+                        <strong>${purchase.bookTitle || 'Unknown Title'}</strong>
+                    </p>
+                </div>
+            `;
+
+            // Adjust padding based on the number of books
+            const adjustContainerPadding = (bookCount) => {
+                const purchasedBooksContainer = document.querySelector('.container.d-flex.position-relative');
+                const basePadding = 370;
+                const increment = 220;
+                purchasedBooksContainer.style.paddingBottom = `${basePadding + Math.max(0, Math.ceil((bookCount - 4) / 4) * increment)}px`;
+            };
+
+            // Log out user
+            const logout = () => {
+                sessionStorage.clear();
+                alert('Logged out successfully.');
+                window.location.reload();
+            };
+
+            // Initialize
+            toggleVisibility(!!userId && !!username);
+        });
+
+
+        
+    </script> 
+
+
+
+</body>
+</html>
